@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Event with Resizing</title>
+    <style>
+      .card-background {
+        height: 3000px;
+        margin-top: 800px;
+        margin-bottom: 1600px;
+      }
+
+      .card-box img {
+        display: block;
+        margin: auto;
+        border: 1px solid red;
+        height: auto;
+      }
+      .card-box {
+        position: sticky;
+        top: 400px;
+        margin-top: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-background">
+      <div class="card-box">
+        <img src="../images/img-unfold02.jpg" />
+      </div>
+      <div class="card-box">
+        <img src="../images/dong.png" />
+      </div>
+      <div class="card-box">
+        <img src="../images/img-unfold02.jpg" />
+      </div>
+    </div>
+
+    <div class="wrap">sedf</div>
+
+    <script>
+      $(window).scroll(function () {
+        //화면이 스크롤 될때마다 내부코드를 실행해주세요~
+        var 높이 = $(window).scrollTop();
+        console.log(높이);
+
+        //650~1150까지 스크롤바를 내리면,첫째카드의 opacity 1~0으로 서서히 바뀜
+        // y = ax + b(일차함수 형태), 대입법으로 a와 b를 구함
+        var y = (-1 / 500) * 높이 + 115 / 50;
+        $(".card-box").eq(0).css("opacity", y);
+
+        //650~1150까지 스크롤바를 내리면, 카드의 크기가 1에서 0.9로 작아짐
+        //y = ax +b 일차함수에서 (650,1)과 (1150,0.9)를 동시에 지나는 식을쓰자
+
+        var z = (-1 / 5000) * 높이 + 565 / 500;
+        $(".card-box").eq(0).css("transform", `scale(${z})`);
+      });
+    </script>
+  </body>
+</html>

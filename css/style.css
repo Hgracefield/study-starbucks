@@ -1,0 +1,45 @@
+@charset "utf-8";
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.spin-animation {
+  padding: 50px;
+}
+
+.spin-animation .container {
+  perspective: 300px;
+  width: 300px;
+  height: 300px;
+}
+.spin-animation .container .item {
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-size: 60px;
+  width: 300px;
+  height: 300px;
+  backface-visibility: hidden;
+  transition: 1s;
+}
+.spin-animation .container .item.front {
+  position: absolute;
+  transform: rotateY(0deg);
+}
+
+.spin-animation .container .item img {
+  width: 100%;
+}
+.spin-animation .container:hover .item.front {
+  transform: rotateY(180deg);
+}
+.spin-animation .container .item.back {
+  transform: rotateY(-180deg);
+}
+.spin-animation .container:hover .item.back {
+  transform: rotateY(0deg);
+}
